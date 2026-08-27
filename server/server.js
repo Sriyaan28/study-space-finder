@@ -44,7 +44,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get(['/api/health', '/health'], (req, res) => {
   res.json({
     status: 'ok',
     message: 'University Study Space Finder API is running smoothly',
@@ -53,15 +53,19 @@ app.get('/api/health', (req, res) => {
 });
 
 // API Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/spaces', require('./routes/spaceRoutes'));
-app.use('/api/seats', require('./routes/seatRoutes'));
-app.use('/api/reservations', require('./routes/reservationRoutes'));
-app.use('/api/favorites', require('./routes/favoriteRoutes'));
-app.use('/api/analytics', require('./routes/analyticsRoutes'));
-app.use('/api/predictions', require('./routes/predictionRoutes'));
-app.use('/api/ai', require('./routes/aiRoutes'));
-app.use('/api/admin', require('./routes/adminRoutes'));
+const apiRouter = express.Router();
+apiRouter.use('/auth', require('./routes/authRoutes'));
+apiRouter.use('/spaces', require('./routes/spaceRoutes'));
+apiRouter.use('/seats', require('./routes/seatRoutes'));
+apiRouter.use('/reservations', require('./routes/reservationRoutes'));
+apiRouter.use('/favorites', require('./routes/favoriteRoutes'));
+apiRouter.use('/analytics', require('./routes/analyticsRoutes'));
+apiRouter.use('/predictions', require('./routes/predictionRoutes'));
+apiRouter.use('/ai', require('./routes/aiRoutes'));
+apiRouter.use('/admin', require('./routes/adminRoutes'));
+
+app.use('/api', apiRouter);
+app.use('/', apiRouter);
 
 // 404 & Error Handlers
 app.use(notFound);
