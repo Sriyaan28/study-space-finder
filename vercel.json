@@ -1,14 +1,15 @@
 {
-  "buildCommand": "cd client && npm install && npm run build",
-  "outputDirectory": "client/dist",
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api"
+  "experimentalServices": {
+    "frontend": {
+      "root": "client",
+      "routePrefix": "/",
+      "framework": "vite"
     },
-    {
-      "source": "/:path*",
-      "destination": "/index.html"
+    "backend": {
+      "root": "server",
+      "routePrefix": "/api",
+      "builder": "@vercel/node",
+      "entrypoint": "server.js"
     }
-  ]
+  }
 }

@@ -3,22 +3,20 @@
   "version": "1.0.0",
   "description": "Full-Stack University Study Space Finder with BookMyShow-style interactive seating, statistical prediction, and AI assistant.",
   "scripts": {
-    "build": "npm run install:all && cd client && npm run build",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
     "seed": "cd server && npm run seed",
+    "build:client": "cd client && npm run build",
     "install:all": "npm --prefix server install && npm --prefix client install"
   },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.3.4",
-    "morgan": "^1.10.0"
-  },
-  "keywords": ["study-space", "university", "react", "express", "mongodb", "seating-reservation"],
+  "keywords": [
+    "study-space",
+    "university",
+    "react",
+    "express",
+    "mongodb",
+    "seating-reservation"
+  ],
   "author": "",
   "license": "ISC"
 }
